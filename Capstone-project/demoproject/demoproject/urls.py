@@ -1,5 +1,5 @@
 """
-URL configuration for LittleLemon project.
+URL configuration for demoproject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -14,18 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from restaurant import views
 from rest_framework import routers
-
+from demoapp import views
+from django.urls import path, include
 
 router = routers.DefaultRouter()
-router.register(r'tables', views.BookingViewSet)
+router.register(r'users', views.UserViewSet, basename='user')
 
 urlpatterns = [
-    path('restaurant/booking/', include(router.urls)),
-    path('admin/', admin.site.urls),
-    path('restaurant/', include('restaurant.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')), # this line is to add login link and mechanism
+
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
