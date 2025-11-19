@@ -27,5 +27,8 @@ urlpatterns = [
     path('restaurant/booking/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('restaurant/', include('restaurant.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')), # this line is to add login link and mechanism
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')), # this line is to add login link and mechanism and basic athentication links
+    #add following lines to update urlpatterns list
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken'))
 ]
